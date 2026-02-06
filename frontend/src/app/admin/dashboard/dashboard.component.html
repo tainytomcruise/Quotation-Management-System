@@ -1,0 +1,49 @@
+<div class="container">
+  <h1>Admin Dashboard</h1>
+
+  <div *ngIf="loading" class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="!loading && stats" class="stats-grid">
+    <mat-card class="stat-card total">
+      <mat-card-content>
+        <div class="icon">
+          <mat-icon>description</mat-icon>
+        </div>
+        <h3>Total Quotations</h3>
+        <p class="number">{{ stats.total }}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card pending">
+      <mat-card-content>
+        <div class="icon">
+          <mat-icon>schedule</mat-icon>
+        </div>
+        <h3>Pending</h3>
+        <p class="number">{{ stats.pending }}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card approved">
+      <mat-card-content>
+        <div class="icon">
+          <mat-icon>check_circle</mat-icon>
+        </div>
+        <h3>Approved</h3>
+        <p class="number">{{ stats.approved }}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card rejected">
+      <mat-card-content>
+        <div class="icon">
+          <mat-icon>cancel</mat-icon>
+        </div>
+        <h3>Rejected</h3>
+        <p class="number">{{ stats.rejected }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

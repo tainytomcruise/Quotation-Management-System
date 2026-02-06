@@ -1,0 +1,36 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    <mat-card-header class="login-header">
+      <div>
+        <mat-card-title>Login</mat-card-title>
+        <p class="form-subtitle">Enter your credentials to access your account</p>
+      </div>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <mat-form-field class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="email">
+          <mat-error *ngIf="form.get('email')?.hasError('required')">Email is required</mat-error>
+          <mat-error *ngIf="form.get('email')?.hasError('email')">Invalid email</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" type="password">
+          <mat-error *ngIf="form.get('password')?.hasError('required')">Password is required</mat-error>
+          <mat-error *ngIf="form.get('password')?.hasError('minlength')">Min 6 characters</mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="full-width" type="submit" [disabled]="form.invalid || loading">
+          {{ loading ? 'Logging in...' : 'Login' }}
+        </button>
+      </form>
+
+      <p class="text-center mt-20">
+        Don't have account? <a routerLink="/register">Register here</a>
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>

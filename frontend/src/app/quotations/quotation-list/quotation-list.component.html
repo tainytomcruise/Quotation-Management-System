@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="header">
+    <h1>My Quotations</h1>
+    <button mat-raised-button color="primary" routerLink="/quotations/create">
+      <mat-icon>add</mat-icon>
+      New Quotation
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="!loading && quotations.length === 0" class="empty-state">
+    <p>No quotations yet. Create one to get started!</p>
+  </div>
+
+  <div *ngIf="!loading && quotations.length > 0" class="table-container">
+    <table mat-table [dataSource]="quotations" class="quotation-table">
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <!-- Company Column -->
+      <ng-container matColumnDef="company">
+        <th mat-header-cell *matHeaderCellDef>Company</th>
+        <td mat-cell *matCellDef="let element">{{ element.company }}</td>
+      </ng-container>
+
+      <!-- Budget Column -->
+      <ng-container matColumnDef="budget">
+        <th mat-header-cell *matHeaderCellDef>Budget</th>
+        <td mat-cell *matCellDef="let element">{{ formatBudget(element.budget) }}</td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let element">
+          <app-status-badge [status]="element.status || 'Pending'"></app-status-badge>
+        </td>
+      </ng-container>
+
+      <!-- Created At Column -->
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let element">{{ formatDate(element.createdAt || '') }}</td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button matTooltip="View" [routerLink]="['/quotations', element._id]">
+            <mat-icon>visibility</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>

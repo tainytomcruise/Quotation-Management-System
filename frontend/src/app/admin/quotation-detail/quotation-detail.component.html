@@ -1,0 +1,63 @@
+<div class="container">
+  <div *ngIf="loading" class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="!loading && quotation" class="detail-card">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Quotation Details</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="detail-grid">
+          <div class="detail-item">
+            <label>Name:</label>
+            <span>{{ quotation.name }}</span>
+          </div>
+          <div class="detail-item">
+            <label>Email:</label>
+            <span>{{ quotation.email }}</span>
+          </div>
+          <div class="detail-item">
+            <label>Phone:</label>
+            <span>{{ quotation.phone }}</span>
+          </div>
+          <div class="detail-item">
+            <label>Company:</label>
+            <span>{{ quotation.company }}</span>
+          </div>
+          <div class="detail-item full-width">
+            <label>Requirement:</label>
+            <span>{{ quotation.requirementDescription }}</span>
+          </div>
+          <div class="detail-item">
+            <label>Budget:</label>
+            <span>{{ formatBudget(quotation.budget) }}</span>
+          </div>
+          <div class="detail-item">
+            <label>Submitted:</label>
+            <span>{{ formatDate(quotation.createdAt || '') }}</span>
+          </div>
+          <div class="detail-item full-width">
+            <label>Status:</label>
+            <mat-form-field appearance="outline">
+              <mat-select [(ngModel)]="selectedStatus" (selectionChange)="updateStatus()">
+                <mat-option value="Pending">Pending</mat-option>
+                <mat-option value="Approved">Approved</mat-option>
+                <mat-option value="Rejected">Rejected</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-button routerLink="/admin/quotations">
+          <mat-icon>arrow_back</mat-icon>
+          Back to List
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
