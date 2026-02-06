@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'https://api.example.com/api'
+  apiBaseUrl: 'https://quotation-management-system-ida2.onrender.com/api'
 };

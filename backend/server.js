@@ -29,6 +29,10 @@ app.use(express.urlencoded({ extended: true }));
 connectDatabase();
 
 // Routes
+app.get("/", (req, res) => {
+  res.send("Quotation Management API is running 🚀");
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/quotations', quotationRoutes);
 app.use('/api/dashboard', dashboardRoutes);

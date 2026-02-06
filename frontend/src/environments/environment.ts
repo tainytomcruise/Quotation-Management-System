@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:5001/api'
+  apiBaseUrl: 'https://quotation-management-system-ida2.onrender.com/api'
+
 };
